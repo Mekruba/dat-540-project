@@ -9,9 +9,23 @@ else
     echo "Virtual environment already exists."
 fi
 
-# Activate the virtual environment
-echo "Activating virtual environment..."
-source venv/bin/activate
+# Check the operating system and activate the virtual environment accordingly
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    # Linux
+    echo "Linux detected. Activating virtual environment..."
+    source venv/bin/activate
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    # macOS
+    echo "macOS detected. Activating virtual environment..."
+    source venv/bin/activate
+elif [[ "$OSTYPE" == "cygwin" || "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
+    # Windows (Cygwin, MSYS, or native Windows)
+    echo "Windows detected. Activating virtual environment..."
+    source venv/Scripts/activate
+else
+    echo "Unsupported OS: $OSTYPE"
+    exit 1
+fi
 
 # Install dependencies from requirements.txt
 if [ -f "requirements.txt" ]; then
