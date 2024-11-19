@@ -10,5 +10,7 @@ scripts
 pyvenv.cfg
 venv
 pip-selfcheck.json
-
+tuning_dir
+*.h5
+*.keras
 data/
